@@ -72,4 +72,26 @@ class GildedRoseTest {
         List<Item> expected = Collections.singletonList(new Item("foo", 8, 8));
         assertEquals(expected, Arrays.asList(app.items));
     }
+
+    @Test
+    void agedBrie_IncreasesInQuality() {
+        Item[] items = new Item[]{new Item("Aged Brie", 10, 10)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Aged Brie", 9, 11));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
+    @Test
+    void agedBrie_MaxQualityIs50() {
+        Item[] items = new Item[]{new Item("Aged Brie", 10, 50)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Aged Brie", 9, 50));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
 }
