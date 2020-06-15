@@ -118,5 +118,59 @@ class GildedRoseTest {
         assertEquals(expected, Arrays.asList(app.items));
     }
 
+    @Test
+    void backstage_ZeroAfterSellIn() {
+        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
+    @Test
+    void backstage_5DaysOrLessQualityIncreasesBy3() {
+        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 4, 23));
+        assertEquals(expected, Arrays.asList(app.items));
+
+        app.updateQuality();
+
+        List<Item> expected2 = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 3, 26));
+        assertEquals(expected2, Arrays.asList(app.items));
+    }
+
+    @Test
+    void backstage_10DaysOrLessQualityIncreasesBy2() {
+        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 9, 22));
+        assertEquals(expected, Arrays.asList(app.items));
+
+        app.updateQuality();
+
+        List<Item> expected2 = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 8, 24));
+        assertEquals(expected2, Arrays.asList(app.items));
+    }
+
+    @Test
+    void backstage_NormalIfSellInIsBiggerThan10() {
+        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 21));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
 
 }
