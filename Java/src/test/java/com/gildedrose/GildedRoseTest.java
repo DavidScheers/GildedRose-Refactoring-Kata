@@ -91,7 +91,32 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
+
         List<Item> expected = Collections.singletonList(new Item("Aged Brie", 9, 50));
         assertEquals(expected, Arrays.asList(app.items));
     }
+
+    @Test
+    void agedBrie_CanHandleNegativeSellIn_QualityDegradesTwiceAsFast() {
+        Item[] items = new Item[]{new Item("Aged Brie", -10, 40)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Aged Brie", -11, 42));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
+    @Test
+    void sulfuras_NoSellInAndNoQualityDecrease() {
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 10, 80)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Sulfuras, Hand of Ragnaros", 10, 80));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
+
 }
