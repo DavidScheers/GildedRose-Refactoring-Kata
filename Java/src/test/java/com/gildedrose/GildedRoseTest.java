@@ -172,5 +172,16 @@ class GildedRoseTest {
         assertEquals(expected, Arrays.asList(app.items));
     }
 
+    @Test
+    void backstage_QualityCantGetBiggerThan50() {
+        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 2, 49)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Backstage passes to a TAFKAL80ETC concert", 1, 50));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
 
 }
