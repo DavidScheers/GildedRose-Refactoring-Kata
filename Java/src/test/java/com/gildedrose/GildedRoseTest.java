@@ -37,6 +37,16 @@ class GildedRoseTest {
         List<Item> expected = Arrays.asList(expectedArray);
 
         assertEquals(expected, Arrays.asList(app.items));
+    }
 
+    @Test
+    void normalItem_PastSellDateDecreasesTwiceAsFast() {
+        Item[] items = new Item[]{new Item("foo", 0, 10)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("foo", -1, 8));
+        assertEquals(expected, Arrays.asList(app.items));
     }
 }
