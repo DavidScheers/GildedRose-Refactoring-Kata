@@ -61,4 +61,15 @@ class GildedRoseTest {
         assertEquals(expected, Arrays.asList(app.items));
     }
 
+    @Test
+    void normalItem_ProcessConsecutive() {
+        Item[] items = new Item[]{new Item("foo", 10, 10)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("foo", 8, 8));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
 }
