@@ -49,4 +49,16 @@ class GildedRoseTest {
         List<Item> expected = Collections.singletonList(new Item("foo", -1, 8));
         assertEquals(expected, Arrays.asList(app.items));
     }
+
+    @Test
+    void normalItem_QualityNeverNegative() {
+        Item[] items = new Item[]{new Item("foo", 1, 0)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("foo", 0, 0));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
 }
