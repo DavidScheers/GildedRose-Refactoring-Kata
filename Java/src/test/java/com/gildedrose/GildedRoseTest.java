@@ -183,5 +183,16 @@ class GildedRoseTest {
         assertEquals(expected, Arrays.asList(app.items));
     }
 
+    @Test
+    void conjured_DegradeTwiceAsFast() {
+        Item[] items = new Item[]{new Item("Conjured", 2, 10)};
+
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        List<Item> expected = Collections.singletonList(new Item("Conjured", 1, 8));
+        assertEquals(expected, Arrays.asList(app.items));
+    }
+
 
 }
