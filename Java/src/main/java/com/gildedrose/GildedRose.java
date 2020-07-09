@@ -6,7 +6,8 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 class GildedRose {
-    Item[] items;
+
+    private Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
